@@ -8,14 +8,15 @@ public class Prodotti {
     private String name;
     private String descrizione;
     private double prezzo;
-    private double iva;
+    private int iva;
     // COSTRUTTORI
 
-    public Prodotti (String name,String descrizione,double prezzo) {
+    public Prodotti (int codice, String name,String descrizione,double prezzo, int iva) {
+        this.codice = codice;
         this.name = name;
         this.descrizione = descrizione;
         this.prezzo = prezzo;
-
+        this.iva = iva;
 
     }
     //GETTER E SETTER
@@ -37,9 +38,12 @@ public class Prodotti {
 
     //METODI
     double percentualeIva (){
-        return (prezzo/100)*iva;
+        return (prezzo/100)*iva + prezzo;
     }
 
-    Random rand = new Random();
-    int n = rand.nextInt(1000);
+    String namePlusCodice (){
+        return name+ "-" +codice;
+    }
+
+
 }
