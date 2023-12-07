@@ -8,34 +8,33 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Random rand = new Random();
-        //int randomNumber = rand.nextInt(1000);
 
         System.out.print("How many products in the store? ");
         int storeSize = Integer.parseInt(scan.nextLine());
         Prodotti [] products = new Prodotti[storeSize];
 
+        try {
+            for (int i = 0; i < products.length; i++) {
+                System.out.println("Products " + (i + 1));
+                int randomNumber = rand.nextInt(1000);
+                System.out.print("Name: ");
+                String name = scan.nextLine();
+                System.out.print("Description: ");
+                String description = scan.nextLine();
+                System.out.print("Price: ");
+                String price = scan.nextLine();
+                double doublePrice = Double.parseDouble(price);
+                System.out.print("Inserisci l'Iva: ");
+                String iva = scan.nextLine();
+                int ivaInt = Integer.parseInt(iva);
 
-        for (int i = 0; i < products.length ; i++) {
-            System.out.println("Products " + (i+1));
-            int randomNumber = rand.nextInt(1000);
-            System.out.print("Name: ");
-            String name = scan.nextLine();
-            System.out.print("Description: ");
-            String description = scan.nextLine();
-            System.out.print("Price: ");
-            String price = scan.nextLine();
-            double doublePrice = Double.parseDouble(price);
-            System.out.print("Inserisci l'Iva: ");
-            String iva = scan.nextLine();
-            int ivaInt =  Integer. parseInt(iva);
-
-
-
-            Prodotti prodotti = new Prodotti(randomNumber,name,description,doublePrice,ivaInt);
-            products[i] = prodotti;
-
-
+                Prodotti prodotti = new Prodotti(randomNumber, name, description, doublePrice, ivaInt);
+                products[i] = prodotti;
+            }
+        } catch (IllegalArgumentException erroreProdotto){
+            System.out.println("Invalid data: " + erroreProdotto.getMessage());
         }
+
         System.out.println("Products list:");
         for (int i = 0; i < products.length; i++) {
             System.out.println("Codice prodoto: " + products[i].getCodice());
@@ -49,17 +48,6 @@ public class Main {
             }
             System.out.println();
         }
-
-
-
-
-
-
-
-
-
-
-
         scan.close();
     }
 
